@@ -1,0 +1,36 @@
+body {
+  font-family: "system-ui", sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Mulish", sans-serif;
+  font-weight: 900;
+  line-height: 1.1;
+  color: #111;
+}
+
+h1,
+h2 {
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+}
+
+/* Composants */
+.date {
+  font-weight: bold;
+  color: #666;
+}
