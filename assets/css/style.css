@@ -29,8 +29,39 @@ h2 {
   letter-spacing: 2px;
 }
 
-/* Composants */
+/* Variant typographique */
 .date {
   font-weight: bold;
   color: #666;
+}
+
+.list-nobullet {
+  list-style-type: none;
+}
+
+.list-nobullet li::before {
+  content: "Compétence";
+  display: block;
+  padding: 0.15rem;
+  font-size: 0.5em;
+}
+
+/* Social Links */
+.social-items {
+  list-style: none;
+  padding-inline-start: 0;
+}
+
+.social-items .social-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.social-items .linkedin::before {
+  content: url("../images/linkedin.svg");
+}
+
+.social-items .github::before {
+  content: url("../images/github.svg");
 }
