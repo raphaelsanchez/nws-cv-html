@@ -1,67 +1,172 @@
+html {
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --clr-forground: #111;
+    --clr-background: #fff;
+    --clr-forground-light: #333;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --clr-forground: #fff;
+    --clr-background: #111;
+    --clr-forground-light: #ccc;
+  }
+}
+
 body {
   font-family: "system-ui", sans-serif;
   font-size: 1rem;
   line-height: 1.5;
-  color: #333;
+  color: var(--clr-forground);
+  background-color: var(--clr-background);
+
+  width: min(calc(100% - 4rem), 1200px);
+  margin-inline: auto;
 }
 
-h1,
-h2,
-h3,
-h4 {
+:where(h1, h2, h3, h4, h5, h6) {
   font-family: "Mulish", sans-serif;
-  font-weight: 900;
   line-height: 1.1;
-  color: #111;
 }
 
-h1,
-h2 {
+:where(h1, h2) {
   text-transform: uppercase;
+  font-weight: 1000;
+}
+
+:where(h3, h4) {
+  font-weight: 800;
 }
 
 h1 {
+  max-width: min-content;
   font-size: 4rem;
+  font-weight: 1000;
+  line-height: 0.85;
+}
+h1 small {
+  display: block;
+  font-size: 0.38em;
+  font-weight: 800;
+  margin-top: 0.5rem;
 }
 
 h2 {
   font-size: 2.5rem;
-  letter-spacing: 2px;
+}
+
+h4 {
+  color: green;
+}
+
+/* Paragraphe */
+p {
+  max-width: 75ch;
+  text-wrap: pretty; /* dégradation gracieuse */
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-underline-offset: 0.1rem;
+}
+
+/* Lists */
+ul {
+  padding-inline-start: 1rem;
+}
+
+address {
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Variant typographique */
 .date {
   font-weight: bold;
-  color: #666;
+  color: var(--clr-forground-light);
 }
 
 .list-nobullet {
   list-style-type: none;
-}
-
-.list-nobullet li::before {
-  content: "Compétence";
-  display: block;
-  padding: 0.15rem;
-  font-size: 0.5em;
+  padding-inline-start: 0;
 }
 
 /* Social Links */
 .social-items {
+  display: flex;
+  gap: 1.5rem;
   list-style: none;
   padding-inline-start: 0;
 }
 
-.social-items .social-item {
+.social-item a {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.social-items .linkedin::before {
-  content: url("../images/linkedin.svg");
+.social-link svg {
+  width: 2rem;
+  height: 2rem;
 }
 
-.social-items .github::before {
-  content: url("../images/github.svg");
+@media (width > 600px) {
+  header {
+    display: flex;
+    gap: 8rem;
+    align-items: center;
+  }
+  .social-items {
+    margin-block-end: 0;
+  }
+  .columns {
+    display: flex;
+    gap: 8rem;
+    flex-direction: row-reverse;
+  }
+  .columns > :nth-child(2) {
+    flex: 1;
+  }
+}
+
+@media print {
+  body {
+    width: 100%;
+    margin: 0;
+    font-size: 12px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  /* Hack for add link href on print */
+  a:not([href^="mailto:"]):not([href^="tel:"])::after {
+    content: " (" attr(href) ")";
+    font-size: 0.75em;
+    font-weight: normal;
+  }
+
+  .social-items {
+    display: initial;
+  }
+  .social-link svg {
+    width: 1rem;
+    height: 1rem;
+  }
 }
